@@ -1,0 +1,24 @@
+class Solution:
+    def canPlaceFlowers(self, flowerbed, n):
+        count = 0
+        size = len(flowerbed)
+
+        for i in range(size):
+            if flowerbed[i] == 0:
+                left = (i == 0) or (flowerbed[i-1] == 0)
+                right = (i == size-1) or (flowerbed[i+1] == 0)
+
+                if left and right:
+                    flowerbed[i] = 1
+                    count += 1
+                    if count >= n:
+                        return True
+
+        return count >= n
+
+
+if __name__ == "__main__":
+    sol = Solution()
+    print(sol.canPlaceFlowers([1,0,0,0,1], 1))
+    print(sol.canPlaceFlowers([1,0,0,0,1], 2))
+
